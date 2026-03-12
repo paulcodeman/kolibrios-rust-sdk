@@ -6,6 +6,8 @@ mod nanolibc;
 pub mod allocation;
 pub mod dll;
 pub mod sys;
+pub mod fs;
+
 
 pub use modules::*;
 
@@ -33,3 +35,4 @@ macro_rules! panic {
         }
     };
 }
+
