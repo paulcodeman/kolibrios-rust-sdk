@@ -9,8 +9,8 @@ name = "hwa"
 path = "examples/hwa.rs"
 
 [[example]]
-name = "con"
-path = "examples/con.rs"
+name = "console"
+path = "examples/console.rs"
 
 [[example]]
 name = "dark"
