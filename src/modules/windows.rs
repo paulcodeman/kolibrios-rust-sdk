@@ -57,7 +57,7 @@ pub fn define_button(
     border: bool,
     color: Option<Color>,
 ) {
-    if 0 >= size.width || size.width >= 0x8000 || 0 >= size.height || size.height >= 0x8000 {
+    if size.width == 0 || size.width >= 0x8000 || size.height == 0 || size.height >= 0x8000 {
         crate::graphics::display_message(
             Dot { x: 10, y: 200 },
             Color::rgb(255, 0, 0),

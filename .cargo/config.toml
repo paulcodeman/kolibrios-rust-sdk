@@ -3,3 +3,7 @@ target = "i686-kolibri.json"
 
 [unstable]
 build-std = ["core", "alloc"]
+json-target-spec = true
+
+[target.i686-kolibri]
+rustflags = ["-C", "link-arg=-Tlink.x"]

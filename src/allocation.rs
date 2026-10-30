@@ -154,7 +154,7 @@ pub fn malloc(layout: Layout) -> *mut u8 {
                 size: size,
             };
             (*sec_hdr).size_left -= size + size_of::<BlockHeader>();
-            return new_block.add(size_of::<BlockHeader>()) as *mut u8; // Возвращаем адрес данных, а не заголовка
+            return (new_block as *mut u8).add(size_of::<BlockHeader>()); // Возвращаем адрес данных, а не заголовка
         }
     }
 }

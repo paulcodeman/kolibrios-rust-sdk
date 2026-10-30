@@ -7,7 +7,7 @@ static FILENAME: &[u8] = b"/rd/1/readme.txt\0";
 static mut BUFFER: [u8; 256] = [0u8; 256];
 
 #[no_mangle]
-pub extern "C" fn _start() -> ! {
+pub extern "C" fn kol_main() -> ! {
     unsafe {
         let info = FileInfo {
             func:   0,
