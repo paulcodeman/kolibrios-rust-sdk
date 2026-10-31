@@ -30,7 +30,9 @@ SECTIONS {
     *(data)
   }
 
-  .bss ALIGN(16) : {*(.bss)}
+  .bss ALIGN(16) : {*(.bss .bss.* COMMON)}
 
   FILE_END = .;
+
+  /DISCARD/ : { *(.eh_frame*) }
 }
