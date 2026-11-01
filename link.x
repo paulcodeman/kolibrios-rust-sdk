@@ -20,8 +20,6 @@ SECTIONS {
     *(.text.*)
   }
 
-  END = .;
-
   .data ALIGN(16) : {
     *(.rodata.*)
     *(const)
@@ -29,6 +27,9 @@ SECTIONS {
     *(.data)
     *(data)
   }
+
+  /* Image covers code and data; .bss follows it */
+  END = .;
 
   .bss ALIGN(16) : {*(.bss .bss.* COMMON)}
 
