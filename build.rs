@@ -2,6 +2,7 @@ use std::{env, process::Command};
 
 fn main() {
     println!("cargo:rerun-if-changed=src/syscalls.S");
+    println!("cargo:rerun-if-changed=link.x");
 
     let out_dir = env::var("OUT_DIR").unwrap();
 
