@@ -20,8 +20,6 @@ SECTIONS {
     *(.text.*)
   }
 
-  END = .;
-
   .data ALIGN(16) : {
     *(.rodata.*)
     *(const)
@@ -30,7 +28,12 @@ SECTIONS {
     *(data)
   }
 
-  .bss ALIGN(16) : {*(.bss)}
+  /* Image covers code and data; .bss follows it */
+  END = .;
+
+  .bss ALIGN(16) : {*(.bss .bss.* COMMON)}
 
   FILE_END = .;
+
+  /DISCARD/ : { *(.eh_frame*) }
 }

@@ -1,6 +1,7 @@
 #![no_std]
 #![no_main]
 
+use core::ffi::CStr;
 use kos::{
     graphics::{display_message, Color, Dot, Size},
     input::fetch_key,

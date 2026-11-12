@@ -26,49 +26,59 @@ _exit:
     int 0x40
 
 _start_window_draw:
+    push ebx
     mov eax, SF_REDRAW
     mov ebx, SSF_BEGIN_DRAW
     int 0x40
+    pop ebx
     ret
 
 _end_window_draw:
+    push ebx
     mov eax, SF_REDRAW
     mov ebx, SSF_END_DRAW
     int 0x40
+    pop ebx
     ret
 
 _define_window:
+    push ebx
     push edi
     push esi
     mov eax, SF_CREATE_WINDOW
-    mov ebx, dword [esp + 4 * 3]
-    mov ecx, dword [esp + 4 * 4]
-    mov edx, dword [esp + 4 * 5]
-    mov esi, dword [esp + 4 * 6]
-    mov edi, dword [esp + 4 * 7]
+    mov ebx, dword [esp + 4 * 4]
+    mov ecx, dword [esp + 4 * 5]
+    mov edx, dword [esp + 4 * 6]
+    mov esi, dword [esp + 4 * 7]
+    mov edi, dword [esp + 4 * 8]
     int 0x40
     pop esi
     pop edi
+    pop ebx
     ret
 
 _put_pixel:
+    push ebx
     mov eax, SF_PUT_PIXEL
-    mov ebx, dword [esp + 4 * 1]
-    mov ecx, dword [esp + 4 * 2]
-    mov edx, dword [esp + 4 * 3]
+    mov ebx, dword [esp + 4 * 2]
+    mov ecx, dword [esp + 4 * 3]
+    mov edx, dword [esp + 4 * 4]
     int 0x40
+    pop ebx
     ret
 
 _display_message:
+    push ebx
     push esi edi
     mov eax, SF_DRAW_TEXT
-    mov ebx, dword [esp + 4 * 3]
-    mov ecx, dword [esp + 4 * 4]
-    mov edx, dword [esp + 4 * 5]
-    mov esi, dword [esp + 4 * 6]
-    mov edi, dword [esp + 4 * 7]
+    mov ebx, dword [esp + 4 * 4]
+    mov ecx, dword [esp + 4 * 5]
+    mov edx, dword [esp + 4 * 6]
+    mov esi, dword [esp + 4 * 7]
+    mov edi, dword [esp + 4 * 8]
     int 0x40
     pop edi esi
+    pop ebx
     ret
 
 _wait_event:
@@ -82,21 +92,25 @@ _pressed_key:
     ret
 
 _define_button:
+    push ebx
     push esi edi
     mov eax, SF_DEFINE_BUTTON
-    mov ebx, dword [esp + 4 * 3]
-    mov ecx, dword [esp + 4 * 4]
-    mov edx, dword [esp + 4 * 5]
-    mov esi, dword [esp + 4 * 6]
+    mov ebx, dword [esp + 4 * 4]
+    mov ecx, dword [esp + 4 * 5]
+    mov edx, dword [esp + 4 * 6]
+    mov esi, dword [esp + 4 * 7]
     int 0x40
     pop edi esi
+    pop ebx
     ret
 
 _debug_write:
+    push ebx
     mov eax, SF_BOARD
     mov ebx, SSF_DEBUG_WRITE
-    mov cl , byte  [esp + 4 * 1]
+    mov cl , byte  [esp + 4 * 2]
     int 0x40
+    pop ebx
     ret
 
 _get_button_id:
@@ -105,41 +119,53 @@ _get_button_id:
     ret
 
 _init_heap:
+    push ebx
     mov eax, SF_SYS_MISC
     mov ebx, SSF_HEAP_INIT
     int 0x40
+    pop ebx
     ret
 
 _alloc:
+    push ebx
     mov eax, SF_SYS_MISC
     mov ebx, SSF_MEM_ALLOC
-    mov ecx, [esp + 4 * 1]
+    mov ecx, [esp + 4 * 2]
     int 0x40
+    pop ebx
     ret
 
 _free:
+    push ebx
     mov eax, SF_SYS_MISC
     mov ebx, SSF_MEM_FREE
-    mov ecx, [esp + 4 * 1]
+    mov ecx, [esp + 4 * 2]
     int 0x40
+    pop ebx
     ret
 
 _get_lang:
+    push ebx
     mov eax, SF_SYSTEM_GET
     mov ebx, SSF_SYS_LANG
     int 0x40
+    pop ebx
     ret
 
 _load_dll:
+    push ebx
     mov eax, SF_SYS_MISC
     mov ebx, SSF_LOAD_DLL
-    mov ecx, [esp + 4 * 1]
+    mov ecx, [esp + 4 * 2]
     int 0x40
+    pop ebx
     ret
 
 _set_event_mask:
+    push ebx
     mov eax, SF_SET_EVENTS_MASK
-    mov ebx, [esp + 4 * 1]
+    mov ebx, [esp + 4 * 2]
     int 0x40
+    pop ebx
     ret
 
